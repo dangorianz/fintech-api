@@ -1,0 +1,63 @@
+@fintech_api_HostAddress = http://localhost:5249
+@loanId = 11111111-1111-1111-1111-111111111111
+
+### Swagger UI
+GET {{fintech_api_HostAddress}}/swagger
+
+### Simulate fixed loan
+POST {{fintech_api_HostAddress}}/api/loans/simulate
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "term": 12,
+  "loanType": "Fixed",
+  "annualEffectiveRate": 0.24
+}
+
+### Create loan request
+POST {{fintech_api_HostAddress}}/api/loans
+Content-Type: application/json
+
+{
+  "userId": "user-123",
+  "amount": 8500,
+  "term": 12,
+  "loanType": "Fixed"
+}
+
+### List loans
+GET {{fintech_api_HostAddress}}/api/loans?userId=user-123
+Accept: application/json
+
+### Get loan
+GET {{fintech_api_HostAddress}}/api/loans/{{loanId}}
+Accept: application/json
+
+### Get payment schedule
+GET {{fintech_api_HostAddress}}/api/loans/{{loanId}}/schedule
+Accept: application/json
+
+### Approve loan
+PATCH {{fintech_api_HostAddress}}/api/loans/{{loanId}}/approve
+Accept: application/json
+
+### Reject loan
+PATCH {{fintech_api_HostAddress}}/api/loans/{{loanId}}/reject
+Accept: application/json
+
+### Create idempotent transaction
+POST {{fintech_api_HostAddress}}/api/transactions
+Content-Type: application/json
+
+{
+  "idempotencyKey": "payment-001",
+  "type": "Payment",
+  "amount": 120,
+  "loanId": "{{loanId}}",
+  "description": "Test payment"
+}
+
+### List transactions
+GET {{fintech_api_HostAddress}}/api/transactions?type=Payment&status=Completed
+Accept: application/json
