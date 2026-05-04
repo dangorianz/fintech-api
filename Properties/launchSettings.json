@@ -7,8 +7,7 @@
       "launchBrowser": false,
       "applicationUrl": "http://localhost:5249",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "DATABASE_URL": "postgresql://postgres:nvfFInZTmVZfnANfywPpUbBNlsEYgoSi@tramway.proxy.rlwy.net:37284/railway"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "https": {
@@ -17,8 +16,7 @@
       "launchBrowser": false,
       "applicationUrl": "https://localhost:7283;http://localhost:5249",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "DATABASE_URL": "postgresql://postgres:nvfFInZTmVZfnANfywPpUbBNlsEYgoSi@tramway.proxy.rlwy.net:37284/railway"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
   }

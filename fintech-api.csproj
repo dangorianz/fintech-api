@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>fintech_api</RootNamespace>
+    <UserSecretsId>fintech-api-local-secrets</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

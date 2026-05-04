@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+var databaseUrl = builder.Configuration["DATABASE_URL"];
 
 if (string.IsNullOrWhiteSpace(databaseUrl))
 {
