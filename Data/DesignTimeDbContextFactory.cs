@@ -8,7 +8,7 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<Applicatio
     public ApplicationDbContext CreateDbContext(string[] args)
     {
         var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL")
-            ?? "postgresql://fintech:fintech123@localhost:5432/fintech-db";
+            ?? "postgresql://postgres:nvfFInZTmVZfnANfywPpUbBNlsEYgoSi@tramway.proxy.rlwy.net:37284/railway";
 
         var connectionString = ConvertDatabaseUrlToConnectionString(databaseUrl);
 
