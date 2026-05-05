@@ -59,8 +59,8 @@ public class LoanService : ILoanService
         if (activeLoans >= 3)
             throw new Exception("El cliente no puede tener más de 3 préstamos activos.");
 
-        var currentMonthlyPayments = await _loanRepository.SumActiveMonthlyPaymentsByUserAsync(request.UserId);
-        var monthlyPayment = _calculator.CalculateMonthlyPayment(request.Amount, request.Term, annualRate, request.LoanType);
+        var currentMonthlyPayments = await _loanRepository.SumActiveMonthlyPaymentsByUserAsync(request.UserId); // Suma de cuotas mensuales de prestamos activos del cliente
+        var monthlyPayment = _calculator.CalculateMonthlyPayment(request.Amount, request.Term, annualRate, request.LoanType); // Cuota mensual del nuevo prestamo
 
         if (currentMonthlyPayments + monthlyPayment > request.MonthlyIncome * 0.40m)
             throw new Exception("La suma de cuotas no puede exceder el 40% de los ingresos mensuales.");

@@ -35,7 +35,7 @@ public class CreateLoanRequest
     public int Term { get; set; }
 
     [Required]
-    [Range(0, double.MaxValue)]
+    [Range(0, 1000000)]
     public decimal MonthlyIncome { get; set; }
 
     [Required]

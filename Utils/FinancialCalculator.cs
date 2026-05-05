@@ -52,11 +52,11 @@ public class FinancialCalculator
 
         for (var i = 1; i <= term; i++)
         {
-            var interest = Math.Round(balance * monthlyRate, 2);
-            var principal = Math.Round(monthlyPayment - interest, 2);
-            balance = Math.Round(balance - principal, 2);
+            var interest = Math.Round(balance * monthlyRate, 2); // Interes del periodo
+            var principal = Math.Round(monthlyPayment - interest, 2); // Capital amortizado en el periodo
+            balance = Math.Round(balance - principal, 2); // Saldo restante despues del pago
 
-            if (i == term && balance != 0)
+            if (i == term && balance != 0) // Ajuste final para corregir posibles redondeos acumulados
             {
                 principal += balance;
                 balance = 0;
@@ -83,19 +83,19 @@ public class FinancialCalculator
         decimal annualRate,
         DateTime startDate)
     {
-        var monthlyRate = (decimal)Math.Pow((double)(1 + annualRate / 100), 1.0 / 12.0) - 1;
-        var fixedPrincipal = Math.Round(amount / term, 2);
+        var monthlyRate = (decimal)Math.Pow((double)(1 + annualRate / 100), 1.0 / 12.0) - 1; // Tasa de interes mensual efectiva
+
+        var fixedPrincipal = Math.Round(amount / term, 2); // Cuota de capital fija
 
         var balance = amount;
         var schedule = new List<PaymentScheduleResponse>();
 
         for (var i = 1; i <= term; i++)
         {
-            var interest = Math.Round(balance * monthlyRate, 2);
-            var principal = i == term ? balance : Math.Min(fixedPrincipal, balance);
-            var totalPayment = Math.Round(principal + interest, 2);
-            balance = Math.Round(balance - principal, 2);
-
+            var interest = Math.Round(balance * monthlyRate, 2); // Interes del periodo
+            var principal = i == term ? balance : Math.Min(fixedPrincipal, balance); // Capital amortizado en el periodo
+            var totalPayment = Math.Round(principal + interest, 2); // Pago total del periodo
+            balance = Math.Round(balance - principal, 2); // Saldo restante despues del pago
             schedule.Add(new PaymentScheduleResponse
             {
                 PaymentNumber = i,
@@ -114,8 +114,7 @@ public class FinancialCalculator
     private decimal CalculateFirstDecreasingPayment(decimal amount, int term, decimal annualRate)
     {
         var monthlyRate = (decimal)Math.Pow((double)(1 + annualRate / 100), 1.0 / 12.0) - 1;
-        var fixedPrincipal = Math.Round(amount / term, 2);
-
+        var fixedPrincipal = Math.Round(amount / term, 2); // Primera cuota de capital fija
         return Math.Round(fixedPrincipal + amount * monthlyRate, 2);
     }
 
